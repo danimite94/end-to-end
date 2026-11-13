@@ -1,0 +1,34 @@
+### Library API — manual requests
+# Needs the VS Code "REST Client" extension (humao.rest-client).
+# Start the server first:  .venv/bin/fastapi dev main.py
+# Click "Send Request" above each request. Run them top to bottom: later
+# requests reuse IDs from earlier responses (# @name ...). Random ISBN/email
+# values make the file safe to re-run against the same library.db.
+
+@baseUrl = http://localhost:8000
+@json = application/json
+
+### Health check
+GET {{baseUrl}}/
+
+
+############################## AUTHORS ##############################
+
+### Create an author
+# @name author
+POST {{baseUrl}}/authors
+Content-Type: {{json}}
+
+{
+  "name": "Terry Pratchett",
+  "bio": "English author of the Discworld series."
+}
+
+### List authors (paginated)
+GET {{baseUrl}}/authors?skip=0&limit=20
+
+### Search authors by name
+GET {{baseUrl}}/authors?name=pratchett
+
+### Get one author
+GET {{baseUrl}}/authors/1

@@ -1,0 +1,23 @@
+[project]
+name = "library-api"
+version = "0.1.0"
+description = "FastAPI CRUD API for a library (authors, books, members, loans) backed by SQLite."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115",
+    "pydantic>=2.7",
+    "sqlalchemy>=2.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ipykernel>=6", # runs lab.ipynb
+]
+
+[tool.uv]
+# An application, not a library: install dependencies only, don't build this project.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
